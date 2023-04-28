@@ -19,6 +19,13 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        binding.textView.setOnClickListener {
+            viewModel.getAllCharacter()
+        }
+
+        viewModel.character.observe(this) {
+            println("Characters: $it")
+        }
 
     }
 }
