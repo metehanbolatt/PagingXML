@@ -25,7 +25,12 @@ class MainViewModel @Inject constructor(
 
     fun getAllCharacter() {
         viewModelScope.launch(Dispatchers.IO) {
-            _character.postValue(repository.getAllCharacter())
+            repository.getAllCharacter()
+                .onStart { println("onStart") }
+                .onCompletion { println("onCompletion") }
+                .collect {
+                    _character.postValue(it)
+                }
         }
     }
 

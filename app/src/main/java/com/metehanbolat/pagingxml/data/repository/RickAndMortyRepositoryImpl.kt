@@ -11,8 +11,8 @@ class RickAndMortyRepositoryImpl @Inject constructor(
     private val api: RickAndMortyApi
 ): RickAndMortyRepository {
 
-    override suspend fun getAllCharacter(): Character {
-        return api.getAllCharacter()
+    override suspend fun getAllCharacter(): Flow<Character> {
+        return flow { api.getAllCharacter() }
 
     }
 }
